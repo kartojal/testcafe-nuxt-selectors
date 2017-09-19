@@ -3,6 +3,9 @@
   "version": "1.0.3",
   "description": "VueJS selectors for Nuxt and TestCafe",
   "repository": "https://github.com/kartojal/testcafe-nuxt-selectors",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "author": {
     "name": "Kartojal"
   },
