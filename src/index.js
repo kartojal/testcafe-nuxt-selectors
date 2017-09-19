@@ -1,39 +1,33 @@
 import { Selector } from 'testcafe';
 
-export default (selector) => {
-    if (selector !== void 0 && typeof selector !== 'string')
-        throw new Error(`If the selector parameter is passed it should be a string, but it was ${typeof selector}`);
+export default selector => {
+    if (selector !== void 0 && typeof selector !== 'string') {
+        throw new Error(
+      `If the selector parameter is passed it should be a string, but it was ${typeof selector}`
+    );
+    }
 
     return Selector(complexSelector => {
         function findFirstRootInstance () {
-            let instance     = null;
-            const treeWalker = document.createTreeWalker(document, NodeFilter.SHOW_ELEMENT, () => NodeFilter.FILTER_ACCEPT, false);
-            let currentNode  = treeWalker.nextNode();
-
-            while (currentNode) {
-                instance = currentNode.__vue__;
-
-                if (instance)
-                    break;
-
-                currentNode = treeWalker.nextNode();
-            }
+            const instance = window.$nuxt.$root;
 
             return instance;
         }
 
         function getComponentTagNames (componentSelector) {
             return componentSelector
-                .split(' ')
-                .filter(el => !!el)
-                .map(el => el.trim().toLowerCase());
+        .split(' ')
+        .filter(el => !!el)
+        .map(el => el.trim().toLowerCase());
         }
 
         function getComponentTag (instance) {
-            return instance.$options.name ||
-                   instance.$options._componentTag ||
-                   instance.$options.__file ||
-                   '';
+            return (
+        instance.$options.name ||
+        instance.$options._componentTag ||
+        instance.$options.__file ||
+        ''
+            );
         }
 
         function filterNodes (root, tags) {
@@ -56,21 +50,22 @@ export default (selector) => {
                 }
             }
 
-            walkVueComponentNodes(root, 0, (node, tagIndex) => tags[tagIndex] === getComponentTag(node));
+            walkVueComponentNodes(
+        root,
+        0,
+        (node, tagIndex) => tags[tagIndex] === getComponentTag(node)
+      );
 
             return foundComponents;
         }
 
-        if (!window.$nuxt)
-            return document.querySelectorAll(complexSelector);
+        if (!window.$nuxt) return document.querySelectorAll(complexSelector);
 
         const rootInstance = findFirstRootInstance();
 
-        if (!rootInstance)
-            return null;
+        if (!rootInstance) return null;
 
-        if (!complexSelector)
-            return rootInstance.$el;
+        if (!complexSelector) return rootInstance.$el;
 
         const componentTags = getComponentTagNames(complexSelector);
 
@@ -84,7 +79,6 @@ export default (selector) => {
                     result[key] = instance[key];
                 });
 
-
                 return result;
             }
 
@@ -93,15 +87,18 @@ export default (selector) => {
             }
 
             function getState (instance) {
-                const props   = instance._props || instance.$options.props;
-                const getters = instance.$options.vuex && instance.$options.vuex.getters;
-                const result  = {};
+                const props = instance._props || instance.$options.props;
+                const getters =
+          instance.$options.vuex && instance.$options.vuex.getters;
+                const result = {};
 
                 Object.keys(instance._data)
-                    .filter(key => !(props && key in props) && !(getters && key in getters))
-                    .forEach(key => {
-                        result[key] = instance._data[key];
-                    });
+          .filter(
+            key => !(props && key in props) && !(getters && key in getters)
+          )
+          .forEach(key => {
+              result[key] = instance._data[key];
+          });
 
                 return result;
             }
@@ -112,18 +109,15 @@ export default (selector) => {
 
             const nodeVue = node.__vue__;
 
-            if (!nodeVue)
-                return null;
+            if (!nodeVue) return null;
 
-            const props    = getProps(nodeVue);
-            const state    = getState(nodeVue);
+            const props = getProps(nodeVue);
+            const state = getState(nodeVue);
             const computed = getComputed(nodeVue);
 
-            if (typeof fn === 'function')
-                return fn({ props, state, computed });
+            if (typeof fn === 'function') return fn({ props, state, computed });
 
             return { props, state, computed };
         }
     });
 };
-
