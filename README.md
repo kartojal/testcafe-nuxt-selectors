@@ -1,11 +1,11 @@
-# testcafe-vue-selectors
+# testcafe-nuxt-selectors
 
-This plugin provides selector extensions that make it easier to test Vue components with [TestCafe](https://github.com/DevExpress/testcafe).
+This plugin provides selector extensions that make it easier to test Vue components in a Nuxt application with [TestCafe](https://github.com/DevExpress/testcafe).
 These extensions allow you to test Vue component state and result markup together.
 
 ## Install
 
-`$ npm install testcafe-vue-selectors`
+`$ npm install testcafe-nuxt-selectors`
 
 ## Usage
 
