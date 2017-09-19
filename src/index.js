@@ -5,14 +5,6 @@ export default (selector) => {
         throw new Error(`If the selector parameter is passed it should be a string, but it was ${typeof selector}`);
 
     return Selector(complexSelector => {
-        function validateVueVersion () {
-            const SUPPORTED_VUE_VERSION = 2;
-            const vueVersion            = parseInt(window.Vue.version.split('.')[0], 10);
-
-            if (vueVersion < SUPPORTED_VUE_VERSION)
-                throw new Error('testcafe-vue-selectors supports Vue version 2.x and newer');
-        }
-
         function findFirstRootInstance () {
             let instance     = null;
             const treeWalker = document.createTreeWalker(document, NodeFilter.SHOW_ELEMENT, () => NodeFilter.FILTER_ACCEPT, false);
@@ -69,10 +61,8 @@ export default (selector) => {
             return foundComponents;
         }
 
-        if (!window.Vue)
+        if (!window.$nuxt)
             return document.querySelectorAll(complexSelector);
-
-        validateVueVersion();
 
         const rootInstance = findFirstRootInstance();
 

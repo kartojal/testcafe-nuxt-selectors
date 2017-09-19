@@ -1,11 +1,10 @@
 {
-  "name": "testcafe-vue-selectors",
+  "name": "testcafe-nuxt-selectors",
   "version": "1.0.3",
-  "description": "VueJS selectors for TestCafe",
-  "repository": "https://github.com/DevExpress/testcafe-vue-selectors",
+  "description": "VueJS selectors for Nuxt and TestCafe",
+  "repository": "https://github.com/kartojal/testcafe-nuxt-selectors",
   "author": {
-    "name": "Developer Express Inc.",
-    "url": "https://devexpress.com"
+    "name": "Kartojal"
   },
   "main": "lib/index",
   "files": [
@@ -34,6 +33,8 @@
   },
   "keywords": [
     "testcafe",
+    "nuxt",
+    "test",
     "vue",
     "vuejs",
     "selectors",
