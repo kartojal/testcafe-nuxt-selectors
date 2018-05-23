@@ -16,18 +16,22 @@ export default selector => {
 
         function getComponentTagNames (componentSelector) {
             return componentSelector
-        .split(' ')
-        .filter(el => !!el)
-        .map(el => el.trim().toLowerCase());
+                .split(' ')
+                .filter(el => !!el)
+                .map(el => el.trim().toLowerCase());
         }
 
-        function getComponentTag (instance) {
-            return (
-        instance.$options.name ||
-        instance.$options._componentTag ||
-        instance.$options.__file ||
-        ''
-            );
+        function getComponentTags (instance) {
+            const candidates = [
+                instance.$options.name,
+                instance.$options._name,
+                instance.$options._componentTag,
+                instance.$options.__file
+            ];
+
+            return candidates
+                .filter((e) => e)
+                .map((e) => e.toLowerCase());
         }
 
         function filterNodes (root, tags) {
@@ -50,11 +54,9 @@ export default selector => {
                 }
             }
 
-            walkVueComponentNodes(
-        root,
-        0,
-        (node, tagIndex) => tags[tagIndex] === getComponentTag(node)
-      );
+            walkVueComponentNodes(root, 0, (node, tagIndex) => {
+                return getComponentTags(node).indexOf(tags[tagIndex]) !== -1;
+            });
 
             return foundComponents;
         }
