@@ -1,6 +1,6 @@
 {
   "name": "testcafe-nuxt-selectors",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "VueJS selectors for Nuxt and TestCafe",
   "repository": "https://github.com/kartojal/testcafe-nuxt-selectors",
   "license": "MIT",
@@ -14,7 +14,6 @@
   "files": [
     "lib"
   ],
-  "license": "MIT",
   "scripts": {
     "lint": "eslint src/index.js test/index.js",
     "nuxt-dev": "PORT=8080 nuxt test/nuxt-example",
