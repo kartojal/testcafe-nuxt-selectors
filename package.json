@@ -1,6 +1,6 @@
 {
   "name": "testcafe-nuxt-selectors",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "VueJS selectors for Nuxt and TestCafe",
   "repository": "https://github.com/kartojal/testcafe-nuxt-selectors",
   "license": "MIT",
