@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "VueJS selectors for Nuxt and TestCafe",
   "repository": "https://github.com/kartojal/testcafe-nuxt-selectors",
+  "license": "MIT",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
@@ -25,14 +26,20 @@
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^8.2.1",
     "babel-preset-es2015": "^6.22.0",
-    "eslint": "^3.15.0",
+    "eslint": "^4.15.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-html": "^4.0.3",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-testcafe": "^0.2.1",
-    "nuxt": "^1.0.0-rc11",
+    "eslint-plugin-vue": "^4.0.0",
+    "nuxt": "1.4.0",
     "publish-please": "^2.2.0",
-    "testcafe": "^0.*.*",
-    "vue": "^2.1.10"
+    "testcafe": "^0.*.*"
   },
   "keywords": [
     "testcafe",
